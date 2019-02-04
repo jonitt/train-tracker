@@ -1,0 +1,17 @@
+@import "../../utils/vars";
+
+.page_header {
+  box-shadow: 0 0 5px 2px #999999;
+  width: 100%;
+  height: $header_height;
+  font-size: $header_font_size;
+  color: #e9f1e2;
+  background-color: #56a319;
+}
+
+.page_header > span {
+  padding-left: 37px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: $header_height;
+}
