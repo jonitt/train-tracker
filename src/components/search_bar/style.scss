@@ -1,0 +1,19 @@
+@import "../../utils/vars";
+
+.search_bar {
+  margin-top: 25px;
+  margin-left: $train_list_left_margin;
+}
+
+.search_bar_info {
+  font-weight: bold;
+  font-size: 1rem;
+  display: block;
+}
+
+.search_bar_input {
+  border: 2px solid #e6ebe6;
+  border-radius: 5px;
+  background-color: #eef3ee;
+  display: block;
+}
