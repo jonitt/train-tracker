@@ -27,9 +27,26 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  },
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader",
+            query: {
+              presets: ["@babel/env", "@babel/react"]
+            }
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
+      } //svg 
+    ] //rules arr
+  }, //module
   devServer: {
     historyApiFallback: true,
     contentBase: "./"

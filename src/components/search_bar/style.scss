@@ -1,5 +1,11 @@
 @import "../../utils/vars";
 
+$font_size: 1.1rem;
+
+$input_height: calc(#{$font_size} + 8px);
+
+$input_top_margin: 2px;
+
 .search_bar {
   margin-top: 25px;
   margin-left: $train_list_left_margin;
@@ -7,13 +13,41 @@
 
 .search_bar_info {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: $font_size;
   display: block;
+}
+
+/*
+  The container uses border-box, so translateY of icon places it
+  vertically in middle of the input
+*/
+.search_bar_input_container {
+  margin-top: $input_top_margin;
+  width: 188px;
+  box-sizing: border-box;
+  height: calc(#{$input_height} + #{$input_top_margin});
+  position: relative;
 }
 
 .search_bar_input {
   border: 2px solid #e6ebe6;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  font-size: $font_size;
   background-color: #eef3ee;
-  display: block;
+}
+
+/*
+  The icon is vertically positioned in middle on parent
+*/
+.search_bar_delete_icon {
+  width: 12px;
+  height: 12px;
+  top: 0;
+  right: 2px;
+  transform: translateY(50%);
+  position: absolute;
+  z-index: 1;
+  fill: #8c8f8c;
 }
