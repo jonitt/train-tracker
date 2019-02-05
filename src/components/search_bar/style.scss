@@ -1,13 +1,13 @@
 @import "../../utils/vars";
 
-$font_size: 1.1rem;
+$font_size: 1.2rem;
 
 $input_height: calc(#{$font_size} + 8px);
 
 $input_top_margin: 2px;
 
 .search_bar {
-  margin-top: 25px;
+  margin-top: 30px;
   margin-left: $train_list_left_margin;
 }
 
@@ -23,7 +23,7 @@ $input_top_margin: 2px;
 */
 .search_bar_input_container {
   margin-top: $input_top_margin;
-  width: 188px;
+  width: 230px;
   box-sizing: border-box;
   height: calc(#{$input_height} + #{$input_top_margin});
   position: relative;

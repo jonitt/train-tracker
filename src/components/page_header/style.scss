@@ -12,7 +12,7 @@
 }
 
 .page_header > span {
-  padding-left: 37px;
+  padding-left: $train_list_left_margin;
   vertical-align: middle;
   display: inline-block;
   line-height: $header_height;

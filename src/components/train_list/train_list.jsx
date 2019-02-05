@@ -4,8 +4,12 @@ import Style from "./style.scss";
 const TrainList = props => (
   <div className="train_list">
     <div className="train_list_pagination">
-      <div className="train_list_pagination_entry">Saapuvat</div>
-      <div className="train_list_pagination_entry">Lähtevät</div>
+      <div className="train_list_pagination_chosen train_list_pagination_entry">
+        Saapuvat
+      </div>
+      <div className="train_list_pagination_unchosen train_list_pagination_entry">
+        Lähtevät
+      </div>
     </div>
     <table className="train_list_trains">
       <colgroup>
