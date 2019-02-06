@@ -3,6 +3,7 @@ import TrainListRow from "./train_list_row.jsx";
 
 /*
   @props:
+    isHeader: is row a header line
     cancelled: is train cancelled
     delayed: is train delayed
     delayedTime: new time train is delayed to
@@ -14,6 +15,8 @@ import TrainListRow from "./train_list_row.jsx";
 class TrainListRowContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.headerCellClass = "train_list_row_header_cell";
 
     this.delayedTimeClass = "train_list_cell train_list_cell_delayed";
 
@@ -28,14 +31,18 @@ class TrainListRowContainer extends React.Component {
 
     this.timeContent = this.props.time;
 
-    this.modifyUnscheduled();
+    this.modifyQuirky();
   }
 
   /*
     Set content of time cell and modify class of all cells, if the train
-    is not moving on schedule
+    is: cancelled / delayed / header
   */
-  modifyUnscheduled() {
+  modifyQuirky() {
+    if (this.props.isHeader) {
+      this.cellClass = this.headerCellClass;
+      this.timeCellClass = this.headerCellClass;
+    }
     if (this.props.delayed) {
       this.timeCellClass = this.delayedTimeClass;
       this.timeContent = (

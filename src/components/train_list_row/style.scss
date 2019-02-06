@@ -16,10 +16,15 @@ $train_list_font_size: 1.1rem;
   background-color: $train_list_color_1;
 }
 
-.train_list_row > th {
+.train_list_row_header_cell {
+  line-height: calc(#{$train_list_font_size} + 25px);
   font-size: calc(#{$train_list_font_size} * 0.9);
   color: #b3b3b3;
   transform: translateY(15%);
+}
+
+.train_list_row_header_cell:first-child {
+  padding-left: 10px;
 }
 
 .train_list_cell {

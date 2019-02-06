@@ -13,6 +13,7 @@ class TrainListContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.setHeaderRow();
     this.setTrainRows(this.props.trains);
   }
 
@@ -22,19 +23,49 @@ class TrainListContainer extends React.Component {
     }
   }
 
+  setHeaderRow() {
+    this.state.arrivalTrainRows[0] = (
+      <TrainListRowContainer
+        key={this.generateKey()}
+        isHeader={true}
+        name={"Juna"}
+        departureStation={"Lähtöasema"}
+        arrivalStation={"Pääteasema"}
+        time={"Saapuu"}
+        delayedTime={""}
+        cancelled={""}
+        delayed={""}
+      />
+    );
+    this.setState({
+      arrivalTrainRows: this.state.arrivalTrainRows
+    });
+  }
+
   setTrainRows(trains) {
     let train_name,
       dep_station,
       arr_station,
       arr_time = "";
     for (let i = 0; i < trains.length; i++) {
-      console.log(trains[i].trainType + " " + trains[i].trainNumber);
-      this.state.arrivalTrainRows[i] =
-        <tr key={this.generateKey()}>
-          <td></td>
-          <td></td>
-        </tr>;
+      let train = trains[i];
+      console.log(train.trainType + " " + train.trainNumber);
+      this.state.arrivalTrainRows[i + 1] = (
+        <TrainListRowContainer
+          key={this.generateKey()}
+          name={train.trainType + " " + train.trainNumber}
+          departureStation={""}
+          arrivalStation={""}
+          time={""}
+          delayedTime={""}
+          cancelled={""}
+          delayed={""}
+        />
+      );
     }
+    this.setState({
+      arrivalTrainRows: this.state.arrivalTrainRows
+    });
   }
 
   //create random key
