@@ -4,9 +4,9 @@ $border_color: #f2f2f2;
 
 $border_size: 2px;
 
-$pagination_entry_width: calc(6rem + 20px);
+$pagination_entry_width: calc(6rem + 28px);
 
-$pagination_entry_height: calc(1.2rem + 20px);
+$pagination_entry_height: calc(1.2rem + 15px);
 
 $list_color_1: #ffffff;
 
@@ -41,6 +41,7 @@ $list_color_2: #fafafa;
   border-top: $border_size solid $border_color;
   border-right: $border_size solid $border_color;
   border-bottom: $border_size solid $list_color_1;
+  border-radius: 5px;
   height: calc(#{$pagination_entry_height} + #{$border_size});
   line-height: calc(#{$pagination_entry_height});
 }
@@ -57,12 +58,12 @@ $list_color_2: #fafafa;
 .train_list_trains {
   width: 100%;
   border-top: $border_size solid $border_color;
-  border-bottom: $border_size solid $border_color;
   background-color: $list_color_2;
   border-collapse: collapse;
 }
 
 .train_list_row {
+  border-bottom: $border_size solid $border_color;
   width: 100%;
   background-color: $list_color_2;
 }
@@ -75,11 +76,11 @@ $list_color_2: #fafafa;
   font-size: 1rem;
   color: #919191;
   font-weight: normal;
+  transform: translateY(15%);
 }
 
 .train_list_cell {
   height: 40px;
-  transform: translateY(15%);
   text-align: left;
 }
 

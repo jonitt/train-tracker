@@ -25,6 +25,18 @@ const TrainList = props => (
           <th className="train_list_cell">Pääteasema</th>
           <th className="train_list_cell">Saapuu</th>
         </tr>
+        <tr className="train_list_row">
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+        </tr>
+        <tr className="train_list_row">
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">ASD 123</td>
+        </tr>
         {props.trains}
       </tbody>
     </table>
