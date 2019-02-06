@@ -1,0 +1,40 @@
+@import "../../utils/vars";
+
+$pagination_entry_width: calc(6rem + 28px);
+
+$pagination_entry_height: calc(1.2rem + 15px);
+
+.train_list_pagination {
+  height: calc(#{$pagination_entry_height});
+}
+
+.train_list_pagination_entry {
+  height: $pagination_entry_height;
+  width: $pagination_entry_width;
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: $train_list_color_1;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  position: absolute;
+}
+
+.train_list_pagination_chosen {
+  border-left: $train_list_border_size solid $train_list_border_color;
+  border-top: $train_list_border_size solid $train_list_border_color;
+  border-right: $train_list_border_size solid $train_list_border_color;
+  border-bottom: $train_list_border_size solid $train_list_color_1;
+  border-radius: 5px;
+  height: calc(#{$pagination_entry_height} + #{$train_list_border_size});
+  line-height: calc(#{$pagination_entry_height});
+}
+
+.train_list_pagination_unchosen {
+  color: #74bd3b;
+  line-height: calc(#{$pagination_entry_height} + calc(#{$train_list_border_size} * 2));
+}
+
+.train_list_pagination_entry:last-child {
+  left: #{$pagination_entry_width};
+}

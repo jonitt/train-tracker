@@ -1,16 +1,10 @@
 import React from "react";
 import Style from "./style.scss";
+import TrainListPaginatinoContainer from "../train_list_pagination/train_list_pagination_container.jsx";
 
 const TrainList = props => (
   <div className="train_list">
-    <div className="train_list_pagination">
-      <div className="train_list_pagination_chosen train_list_pagination_entry">
-        Saapuvat
-      </div>
-      <div className="train_list_pagination_unchosen train_list_pagination_entry">
-        Lähtevät
-      </div>
-    </div>
+    <TrainListPaginatinoContainer />
     <table className="train_list_trains">
       <colgroup>
         <col className="train_list_col_train" />
@@ -26,26 +20,28 @@ const TrainList = props => (
           <th className="train_list_cell">Saapuu</th>
         </tr>
         <tr className="train_list_row">
-          <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">SH 243</td>
+          <td className="train_list_cell">Oulu</td>
+          <td className="train_list_cell">Tampere</td>
+          <td className="train_list_cell">20:20</td>
         </tr>
         <tr className="train_list_row">
-          <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell">AJ 231</td>
+          <td className="train_list_cell">Jyväskylä</td>
+          <td className="train_list_cell">Helsinki</td>
           <td className="train_list_cell train_list_cell_delayed">
-            <p className="trains_list_cell_delayed_content">10:30</p>
-            <p className="trains_list_cell_delayed_content">(10:24)</p>
+            <p className="trains_list_cell_delayed_content">22:30</p>
+            <p className="trains_list_cell_delayed_content">(22:24)</p>
           </td>
         </tr>
         <tr className="train_list_row">
-          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
-          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
-          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
+          <td className="train_list_cell train_list_cell_cancelled">SH 333</td>
+          <td className="train_list_cell train_list_cell_cancelled">
+            Rovaniemi
+          </td>
+          <td className="train_list_cell train_list_cell_cancelled">Turku</td>
           <td className="train_list_cell train_list_cell_cancelled_time train_list_cell_cancelled">
-            <p className="train_list_cell_cancelled_time_content">20:21</p>
+            <p className="train_list_cell_cancelled_time_content">23:21</p>
             <p className="train_list_cell_cancelled_time_content">Cancelled</p>
           </td>
         </tr>
