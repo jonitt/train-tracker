@@ -6,14 +6,41 @@ class TrainListContainer extends React.Component {
     super(props);
 
     this.state = {
-      trains: []
+      arrivalTrainRows: [],
+      departureTrainRows: []
     };
   }
 
+  componentDidMount() {
+    this.setTrainRows(this.props.trains);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.trains != this.props.trains) {
+      this.setTrainRows(this.props.trains);
+    }
+  }
+
+  setTrainRows(trains) {
+    let train_name,
+      dep_station,
+      arr_station,
+      arr_time = "";
+    for (let i = 0; i < trains.length; i++) {
+
+      this.state.arrivalTrainRows[i] = <tr key={this.generateKey()}/>;
+    }
+  }
+
+  //create random key
+  generateKey() {
+    return Math.random()
+      .toString(36)
+      .substr(2, 16);
+  }
+
   render() {
-    return (
-      <TrainList trains={this.state.trains} />
-    );
+    return <TrainList trainRows={this.state.arrivalTrainRows} />;
   }
 }
 

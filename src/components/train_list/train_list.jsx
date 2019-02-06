@@ -45,7 +45,7 @@ const TrainList = props => (
             <p className="train_list_cell_cancelled_time_content">Cancelled</p>
           </td>
         </tr>
-        {props.trains}
+        {props.trainRows}
       </tbody>
     </table>
   </div>
