@@ -12,6 +12,8 @@ $list_color_1: #ffffff;
 
 $list_color_2: #fafafa;
 
+$train_list_font_size: 1.1rem;
+
 .train_list {
   margin-top: 30px;
   margin-left: $train_list_left_margin;
@@ -32,6 +34,7 @@ $list_color_2: #fafafa;
   box-sizing: border-box;
   background-color: $list_color_1;
   font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
   position: absolute;
 }
@@ -60,6 +63,7 @@ $list_color_2: #fafafa;
   border-top: $border_size solid $border_color;
   background-color: $list_color_2;
   border-collapse: collapse;
+  font-size: $train_list_font_size;
 }
 
 .train_list_row {
@@ -73,19 +77,53 @@ $list_color_2: #fafafa;
 }
 
 .train_list_row > th {
-  font-size: 1rem;
-  color: #919191;
-  font-weight: normal;
+  font-size: calc(#{$train_list_font_size} * 0.9);
+  color: #b3b3b3;
   transform: translateY(15%);
 }
 
 .train_list_cell {
-  height: 40px;
+  padding-top: 3px;
+  height: calc(#{$train_list_font_size} + 25px);
+  line-height: calc(#{$train_list_font_size} + 25px);
   text-align: left;
+  font-weight: 600;
+  color: #4d4d4d;
 }
 
 .train_list_cell:first-child {
   padding-left: 10px;
+}
+
+.train_list_cell_delayed {
+  padding-top: 5px;
+  line-height: calc(1rem + 3px);
+}
+
+.trains_list_cell_delayed_content {
+  color: red;
+}
+
+.trains_list_cell_delayed_content:last-child {
+  font-size: calc(#{$train_list_font_size} * 0.8);
+  color: grey;
+}
+
+.train_list_cell_cancelled {
+  color: #d9d9d9;
+}
+
+.train_list_cell_cancelled_time {
+  padding-top: 5px;
+  line-height: calc(1rem + 3px);
+}
+
+.train_list_cell_cancelled_time_content {
+}
+
+
+.train_list_cell_cancelled_time_content:last-child {
+  color: red;
 }
 
 .train_list_col_train {

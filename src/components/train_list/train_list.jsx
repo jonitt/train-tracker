@@ -35,7 +35,19 @@ const TrainList = props => (
           <td className="train_list_cell">ASD 123</td>
           <td className="train_list_cell">ASD 123</td>
           <td className="train_list_cell">ASD 123</td>
-          <td className="train_list_cell">ASD 123</td>
+          <td className="train_list_cell train_list_cell_delayed">
+            <p className="trains_list_cell_delayed_content">10:30</p>
+            <p className="trains_list_cell_delayed_content">(10:24)</p>
+          </td>
+        </tr>
+        <tr className="train_list_row">
+          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
+          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
+          <td className="train_list_cell train_list_cell_cancelled">ASD 123</td>
+          <td className="train_list_cell train_list_cell_cancelled_time train_list_cell_cancelled">
+            <p className="train_list_cell_cancelled_time_content">20:21</p>
+            <p className="train_list_cell_cancelled_time_content">Cancelled</p>
+          </td>
         </tr>
         {props.trains}
       </tbody>
