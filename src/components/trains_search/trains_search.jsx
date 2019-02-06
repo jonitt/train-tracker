@@ -9,7 +9,7 @@ const TrainsSearch = props => (
       stations={props.stations}
       onSubmit={props.onSubmitSearch}
     />
-    <TrainListContainer stations={props.stations} trains={props.foundTrains} />
+    <TrainListContainer chosenStationCode={props.chosenStationCode} stations={props.stations} trains={props.foundTrains} />
   </div>
 );
 

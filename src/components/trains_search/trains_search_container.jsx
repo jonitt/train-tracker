@@ -8,7 +8,7 @@ import TrainsSearch from "./trains_search.jsx";
 class TrainsSearchContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.url = "https://rata.digitraffic.fi/api/v1/live-trains?station=";
+    this.url = "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=400&minutes_after_departure=0&minutes_before_arrival=400&minutes_after_arrival=0";
 
     this.state = {
       foundTrains: []
@@ -16,15 +16,14 @@ class TrainsSearchContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("MOUNTED");
     this.getTrains("TPE");
   }
 
   /*
     Gets trains of given city from the url
   */
-  getTrains(city) {
-    fetch(this.url + city)
+  getTrains(station) {
+    fetch(this.url.replace("station/", "station/" + station))
       .then(res => res.json())
       .then(json => {
         console.log(json[0]);
@@ -39,6 +38,7 @@ class TrainsSearchContainer extends React.Component {
   render() {
     return (
       <TrainsSearch
+        chosenStationCode="TPE"
         onSubmitSearch={station => this.searchTrains(station)}
         stations={this.props.stations}
         foundTrains={this.state.foundTrains}
