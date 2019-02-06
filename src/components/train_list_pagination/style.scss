@@ -35,6 +35,10 @@ $pagination_entry_height: calc(1.2rem + 15px);
   line-height: calc(#{$pagination_entry_height} + calc(#{$train_list_border_size} * 2));
 }
 
+.train_list_pagination_unchosen:hover {
+  cursor: pointer;
+}
+
 .train_list_pagination_entry:last-child {
   left: #{$pagination_entry_width};
 }
