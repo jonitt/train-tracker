@@ -1,3 +1,4 @@
+//@Author Joni Tuhkanen
 import React from "react";
 import ReactDOM from "react-dom";
 import AppContainer from "./components/app/app_container.jsx";
