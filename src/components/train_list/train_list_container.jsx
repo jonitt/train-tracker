@@ -83,7 +83,7 @@ class TrainListContainer extends React.Component {
         this.props.chosenStationCode,
         train.timeTableRows
       );
-
+//lajittele ajan mukaa, tallenna eka ulkosee var
       this.state.arrivalTrainRows[i + 1] = (
         <TrainListRowContainer
           name={train.trainType + " " + train.trainNumber}

@@ -8,7 +8,7 @@ import TrainsSearch from "./trains_search.jsx";
 class TrainsSearchContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.url = "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=400&minutes_after_departure=0&minutes_before_arrival=400&minutes_after_arrival=0";
+    this.url = "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=10&minutes_after_departure=10&minutes_before_arrival=10&minutes_after_arrival=10";
 
     this.state = {
       foundTrains: []
