@@ -28,7 +28,7 @@ class SearchBarContainer extends React.Component {
       return;
     }
 
-    let code = getStationCode(this.state.searchBarText, this.props.stations);
+    let code = this.getStationCode(this.state.searchBarText, this.props.stations);
 
     if (code.length < 1) {
       return;

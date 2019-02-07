@@ -12,35 +12,37 @@ class TrainsSearchContainer extends React.Component {
       "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=60&minutes_after_departure=60&minutes_before_arrival=60&minutes_after_arrival=60";
     //this.url = "https://rata.digitraffic.fi/api/v1/live-trains?station=TPE";
     this.state = {
-      foundTrains: []
+      foundTrains: [],
+      chosenStationCode: ""
     };
   }
 
   componentDidMount() {
-    this.getTrains("TPE");
+    this.getTrains("HKI");
   }
 
   /*
     Gets trains of given city from the url
   */
-  getTrains(station) {
-    fetch(this.url.replace("station/", "station/" + station))
+  getTrains(stationCode) {
+    fetch(this.url.replace("station/", "station/" + stationCode))
       .then(res => res.json())
       .then(json => {
         console.log(json[0]);
-        this.setState({ foundTrains: json });
+        this.setState({ foundTrains: json, chosenStationCode: stationCode });
       });
   }
 
-  searchTrains(station) {
-    console.log("searching trains for: #{station}");
+  searchTrains(stationCode) {
+    console.log("searching trains for: " + stationCode);
+    this.getTrains(stationCode);
   }
 
   render() {
     return (
       <TrainsSearch
-        chosenStationCode="TPE"
-        onSubmitSearch={station => this.searchTrains(station)}
+        chosenStationCode={this.state.chosenStationCode}
+        onSubmitSearch={stationCode => this.searchTrains(stationCode)}
         stations={this.props.stations}
         foundTrains={this.state.foundTrains}
       />

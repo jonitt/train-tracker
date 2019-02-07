@@ -19,7 +19,6 @@ class TrainListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.setHeaderRow();
     this.setTrainRows(this.props.trains);
   }
 
@@ -27,31 +26,6 @@ class TrainListContainer extends React.Component {
     if (prevProps.trains != this.props.trains) {
       this.setTrainRows(this.props.trains);
     }
-  }
-
-  /*
-    Creates the header row, and sets it first in stations.
-  */
-  setHeaderRow() {
-    this.state.arrivalTrainRows[0] = this.createHeaderRow("saapuu");
-    this.state.departureTrainRows[0] = this.createHeaderRow("lähtee");
-    this.setState({
-      arrivalTrainRows: this.state.arrivalTrainRows,
-      departureTrainRows: this.state.departureTrainRows
-    });
-  }
-
-  createHeaderRow(timeText) {
-    return (
-      <TrainListRowContainer
-        isHeader={true}
-        name={"Juna"}
-        departureStation={"Lähtöasema"}
-        arrivalStation={"Pääteasema"}
-        time={timeText}
-        key={this.generateKey()}
-      />
-    );
   }
 
   /*
@@ -113,9 +87,9 @@ class TrainListContainer extends React.Component {
     }
     //order created train rows by date
     trainRows = this.orderTrainRows(trainRows);
-    //add header row to list, and add trainrows after it
+    //add header row first to list
     this.state.arrivalTrainRows = [this.createHeaderRow("saapuu")];
-    //get row components from array, and add to state
+    //get row components from array, and add after header row
     for(let i = 0; i < trainRows.length; i++) {
       this.state.arrivalTrainRows.push(trainRows[i][0]);
     }
@@ -257,6 +231,22 @@ class TrainListContainer extends React.Component {
     return parseInt(
       time.substring(timeIndex, timeIndex + 2) +
         time.substring(timeIndex + 3, timeIndex + 5)
+    );
+  }
+
+  /*
+    Creates a header row with timeText as 4th heading.
+  */
+  createHeaderRow(timeText) {
+    return (
+      <TrainListRowContainer
+        isHeader={true}
+        name={"Juna"}
+        departureStation={"Lähtöasema"}
+        arrivalStation={"Pääteasema"}
+        time={timeText}
+        key={this.generateKey()}
+      />
     );
   }
 
