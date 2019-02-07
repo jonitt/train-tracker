@@ -115,6 +115,7 @@ class TrainListContainer extends React.Component {
     trainRows = this.orderTrainRows(trainRows);
     //add header row to list, and add trainrows after it
     this.state.arrivalTrainRows = [this.createHeaderRow("saapuu")];
+    //get row components from array, and add to state
     for(let i = 0; i < trainRows.length; i++) {
       this.state.arrivalTrainRows.push(trainRows[i][0]);
     }

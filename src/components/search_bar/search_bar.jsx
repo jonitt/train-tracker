@@ -6,8 +6,18 @@ const SearchBar = props => (
   <div className="search_bar">
     <label className="search_bar_info">Hae aseman nimellä</label>
     <div className="search_bar_input_container">
-      <input type="text" className="search_bar_input" />
-      <DeleteIcon className="search_bar_delete_icon" />
+      <input
+        onSubmit={props.onSubmit}
+        type="text"
+        className="search_bar_input"
+        value={props.searchBarText}
+        onChange={props.changeSearchBarValue}
+        onKeyPress={props.handleKeyPress}
+      />
+      <DeleteIcon
+        onClick={props.onClickDelete}
+        className="search_bar_delete_icon"
+      />
     </div>
   </div>
 );
