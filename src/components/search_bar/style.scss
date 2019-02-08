@@ -6,6 +6,8 @@ $input_height: calc(#{$font_size} + 8px);
 
 $input_top_margin: 2px;
 
+$input_width: 230px;
+
 .search_bar {
   margin-top: 30px;
   margin-left: $train_list_left_margin;
@@ -17,14 +19,9 @@ $input_top_margin: 2px;
   display: block;
 }
 
-/*
-  The container uses border-box, so translateY of icon places it
-  vertically in middle of the input
-*/
 .search_bar_input_container {
   margin-top: $input_top_margin;
-  width: 230px;
-  box-sizing: border-box;
+  width: 100%;
   height: calc(#{$input_height} + #{$input_top_margin});
   position: relative;
 }
@@ -32,20 +29,36 @@ $input_top_margin: 2px;
 .search_bar_input {
   border: 2px solid #e6ebe6;
   border-radius: 5px;
-  width: 100%;
+  width: $input_width;
   height: 100%;
   font-size: $font_size;
   background-color: #eef3ee;
 }
 
+.search_bar_error {
+  padding-top: 6px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  border: 1px solid #e0cece;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #f5e1e1;
+  left: calc(#{$input_width} + 10px);
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  color: #3b3b3b;
+}
+
 /*
-  The icon is vertically positioned in middle on parent
+  The icon is vertically positioned in middle of parent
 */
 .search_bar_delete_icon {
   width: 12px;
   height: 12px;
   top: 0;
-  right: 2px;
+  left: calc(#{$input_width} - 15px);
   transform: translateY(50%);
   position: absolute;
   z-index: 1;

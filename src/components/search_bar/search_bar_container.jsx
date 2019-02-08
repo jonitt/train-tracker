@@ -15,12 +15,13 @@ class SearchBarContainer extends React.Component {
     this.searchStation = this.searchStation.bind(this);
 
     this.state = {
-      searchBarText: "aehjkjl"
+      searchBarText: "",
+      hasErrorStationNotFound: false
     };
   }
 
   clearSearchBar() {
-    this.setState({ searchBarText: "" });
+    this.setState({ searchBarText: "", hasErrorStationNotFound: false });
   }
 
   searchStation(e) {
@@ -28,11 +29,22 @@ class SearchBarContainer extends React.Component {
       return;
     }
 
-    let code = this.getStationCode(this.state.searchBarText, this.props.stations);
+    let code = this.getStationCode(
+      this.state.searchBarText,
+      this.props.stations
+    );
 
+    //if station was not found, "" was retured from getstationcode
     if (code.length < 1) {
+      this.setState({
+        hasErrorStationNotFound: true
+      });
       return;
     }
+
+    this.setState({
+      hasErrorStationNotFound: false
+    });
 
     this.props.onSubmit(code);
   }
@@ -68,6 +80,7 @@ class SearchBarContainer extends React.Component {
         searchBarText={this.state.searchBarText}
         handleKeyPress={this.searchStation}
         onClickDelete={() => this.clearSearchBar()}
+        hasErrorStationNotFound={this.state.hasErrorStationNotFound}
       />
     );
   }

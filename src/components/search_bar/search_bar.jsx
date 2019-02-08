@@ -14,6 +14,9 @@ const SearchBar = props => (
         onChange={props.changeSearchBarValue}
         onKeyPress={props.handleKeyPress}
       />
+      {props.hasErrorStationNotFound ? (
+        <div className="search_bar_error">Station now found!</div>
+      ) : null}
       <DeleteIcon
         onClick={props.onClickDelete}
         className="search_bar_delete_icon"
