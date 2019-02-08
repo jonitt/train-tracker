@@ -17,7 +17,9 @@ const SearchBar = props => (
       {props.hasErrorStationNotFound ? (
         <div className="search_bar_error">Station now found!</div>
       ) : null}
-      {props.stationsAreSet ? null : <div>Etsitään asemia...</div>}
+      {props.stationsAreSet ? null : (
+        <div className="search_bar_searching_text">Etsitään asemia...</div>
+      )}
       <DeleteIcon
         onClick={props.onClickDelete}
         className="search_bar_delete_icon"

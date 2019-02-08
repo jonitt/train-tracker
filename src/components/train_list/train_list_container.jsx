@@ -81,7 +81,7 @@ class TrainListContainer extends React.Component {
             arrivalStationName,
             schedules[0].scheduledTime,
             this.configureTime(schedules[0].actualTime),
-            schedules[0].cancelled ? true : false,
+            schedules[0].cancelled,
             schedules[0].actualTime != undefined &&
               schedules[0].actualTime != null
               ? true
@@ -98,7 +98,7 @@ class TrainListContainer extends React.Component {
             arrivalStationName,
             schedules[1].scheduledTime,
             this.configureTime(schedules[1].actualTime),
-            schedules[1].cancelled ? true : false,
+            schedules[1].cancelled,
             schedules[1].actualTime != undefined &&
               schedules[1].actualTime != null
               ? true
@@ -109,8 +109,8 @@ class TrainListContainer extends React.Component {
       }
     } //end of forloop
     //order created train rows by date
-    arrivalTrainRows = this.addTrainRows(arrivalTrainRows);
-    departureTrainRows = this.addTrainRows(departureTrainRows);
+    arrivalTrainRows = this.addTrainRows(arrivalTrainRows, "Saapuu");
+    departureTrainRows = this.addTrainRows(departureTrainRows, "Lähtee");
 
     this.setState({
       arrivalTrainRows: arrivalTrainRows,

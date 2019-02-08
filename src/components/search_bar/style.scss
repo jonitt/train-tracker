@@ -51,6 +51,13 @@ $input_width: 230px;
   color: #3b3b3b;
 }
 
+.search_bar_searching_text {
+  margin-top: calc(-1rem - 2px);
+  left: calc(#{$input_width} + 10px);
+  color: #9f9f9f;
+  position: absolute;
+}
+
 /*
   The icon is vertically positioned in middle of parent
 */
