@@ -9,7 +9,7 @@ import TrainListRowContainer from "../train_list_row/train_list_row_container.js
 */
 const TrainList = props => (
   <div className="train_list">
-    <TrainListPaginatinoContainer />
+    <TrainListPaginatinoContainer handleChange={props.handlePageChange} />
     <table className="train_list_trains">
       <colgroup>
         <col className="train_list_col_train" />

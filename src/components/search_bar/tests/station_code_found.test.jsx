@@ -30,3 +30,10 @@ test("Got empty string with incorrect name", () => {
     .getStationCode("aearefef", stations);
   expect(code.length).toBe(0);
 });
+
+test("Got code with city name having white space", () => {
+  let code = wrapper
+    .instance()
+    .getStationCode(" tampere      ", stations);
+  expect(code).toBe("TPE");
+});

@@ -24,6 +24,9 @@ class SearchBarContainer extends React.Component {
     this.setState({ searchBarText: "", hasErrorStationNotFound: false });
   }
 
+  /*
+    Handles searching for station starting from input keyPress event.
+  */
   searchStation(e) {
     if (e.key != "Enter") {
       return;
@@ -54,7 +57,7 @@ class SearchBarContainer extends React.Component {
     If no station code is found, return "".
   */
   getStationCode(name, stations) {
-    let nameLower = name.toLowerCase();
+    let nameLower = name.trim().toLowerCase();
     for (let i = 0; i < stations.length; i++) {
       let stationName = stations[i].stationName;
       if (

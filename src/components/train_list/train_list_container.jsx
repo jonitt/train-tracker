@@ -12,9 +12,12 @@ class TrainListContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.changePage = this.changePage.bind(this);
+
     this.state = {
       arrivalTrainRows: [],
-      departureTrainRows: []
+      departureTrainRows: [],
+      displayPage: 0 //0 = arrivals, 1 = departures
     };
   }
 
@@ -24,6 +27,11 @@ class TrainListContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.trains != this.props.trains) {
+      /*
+      component state should be passed to pagination for this to work
+      this.setState({
+        displayPage: 0
+      });*/
       this.setTrainRows(this.props.trains);
     }
   }
@@ -33,10 +41,8 @@ class TrainListContainer extends React.Component {
   */
   setTrainRows(trains) {
     let trainRows = [];
-    let train_name,
-      dep_station,
-      arr_station,
-      arr_time = "";
+    let arrivalTrainRows = [];
+    let departureTrainRows = [];
     for (let i = 0; i < trains.length; i++) {
       let train = trains[i];
       let depStation = train.timeTableRows[0];
@@ -53,68 +59,97 @@ class TrainListContainer extends React.Component {
         this.props.chosenStationCode,
         train.timeTableRows
       );
-      //log times of train to console
-      console.log(
-        train.trainType +
-          " " +
-          train.trainNumber +
-          " " +
-          "\n DEPART: " +
-          this.configureTime(train.timeTableRows[0].scheduledTime) +
-          "\n CHOSEN: " +
-          this.configureTime(schedules[0].scheduledTime) +
-          "\n ARR: " +
-          this.configureTime(
-            train.timeTableRows[train.timeTableRows.length - 1].scheduledTime
-          )
-      );
-      console.log(schedules[0]);
 
-      //lajittele ajan mukaa, tallenna eka ulkosee var
-      trainRows[i] = [
-        <TrainListRowContainer
-          name={train.trainType + " " + train.trainNumber}
-          departureStation={depStationName}
-          arrivalStation={arrivalStationName}
-          time={this.configureTime(schedules[0].scheduledTime)}
-          delayedTime={""}
-          cancelled={""}
-          delayed={""}
-          key={this.generateKey()}
-        />,
-        schedules[0].scheduledTime
-      ];
+      if (schedules[0] != null) {
+        //name, dStation, aStation, time, delayedTime, cancelled, delayed
+        arrivalTrainRows.push([
+          this.createRow(
+            train.trainType + " " + train.trainNumber,
+            depStationName,
+            arrivalStationName,
+            schedules[0].scheduledTime,
+            "",
+            "",
+            ""
+          ),
+          schedules[0].scheduledTime
+        ]);
+      }
+      if (schedules[1] != null) {
+        departureTrainRows.push([
+          this.createRow(
+            train.trainType + " " + train.trainNumber,
+            depStationName,
+            arrivalStationName,
+            schedules[1].scheduledTime,
+            "",
+            "",
+            ""
+          ),
+          schedules[1].scheduledTime
+        ]);
+      }
     }
     //order created train rows by date
-    trainRows = this.orderTrainRows(trainRows);
-    //add header row first to list
-    this.state.arrivalTrainRows = [this.createHeaderRow("saapuu")];
-    //get row components from array, and add after header row
-    for(let i = 0; i < trainRows.length; i++) {
-      this.state.arrivalTrainRows.push(trainRows[i][0]);
-    }
+    arrivalTrainRows = this.addTrainRows(arrivalTrainRows);
+    departureTrainRows = this.addTrainRows(departureTrainRows);
+
     this.setState({
-      arrivalTrainRows: this.state.arrivalTrainRows
+      arrivalTrainRows: arrivalTrainRows,
+      departureTrainRows: departureTrainRows
     });
   }
 
   /*
-    Returns the arrival (and departure) timetable object in given city
-    as an array.
+    Orders the timed train rows of form [(), ()], and makes them of form ()
+    (without date attached in)
+  */
+  addTrainRows(timedTrainRows, headerTimeText) {
+    //this will create order list of rows, but object is still of form [(), ()]
+    let tempRows = this.orderTrainRows(timedTrainRows);
+
+    //creates the actual list of rows initiated with header row
+    let trainRows = [this.createHeaderRow(headerTimeText)];
+
+    //add rows to the rows list
+    for (let i = 0; i < tempRows.length; i++) {
+      trainRows.push(tempRows[i][0]);
+    }
+
+    return trainRows;
+  }
+
+  /*
+    Returns the arrival and departue) timetable object in given city
+    as an array. If no entry is found, return array with null.
   */
   getArrivalDepartureSchedule(stationCode, timeTable) {
     let schedules = [];
     let stationCodeLowerCase = stationCode.toLowerCase();
     for (let i = 0; i < timeTable.length; i++) {
       let t = timeTable[i];
+      //if code matches, check whether it's arrival or departure after
       if (t.stationShortCode.toLowerCase() === stationCodeLowerCase) {
+        //if it is the first entry, it is a departure and not an arrival
+        if (i == 0) {
+          schedules.push(null);
+          schedules.push(t);
+          return schedules;
+        }
+        //otherwise it is an arrival
         schedules.push(t);
-        if (i < timeTable.length) {
+        //if arrival is last entry, there is no departure
+        if (i < timeTable.length - 1) {
           schedules.push(timeTable[i + 1]);
+        } else {
+          schedules.push(null);
         }
         return schedules;
-      }
-    }
+      } //end of if code matches
+    } //end of forloop
+    schedules.push(null);
+    schedules.push(null);
+    return schedules;
   }
 
   /*
@@ -235,6 +270,24 @@ class TrainListContainer extends React.Component {
   }
 
   /*
+    Create a train list row with given attributes
+  */
+  createRow(name, dStation, aStation, time, delayedTime, cancelled, delayed) {
+    return (
+      <TrainListRowContainer
+        name={name}
+        departureStation={dStation}
+        arrivalStation={aStation}
+        time={this.configureTime(time)}
+        delayedTime={delayedTime}
+        cancelled={cancelled}
+        delayed={delayed}
+        key={this.generateKey()}
+      />
+    );
+  }
+
+  /*
     Creates a header row with timeText as 4th heading.
   */
   createHeaderRow(timeText) {
@@ -257,8 +310,27 @@ class TrainListContainer extends React.Component {
       .substr(2, 16);
   }
 
+  /*
+    Handles change between arrivals and departures pages.
+  */
+  changePage(pageNum) {
+    console.log("Showing in list page num: " + pageNum);
+    this.setState({
+      displayPage: pageNum
+    });
+  }
+
   render() {
-    return <TrainList trainRows={this.state.arrivalTrainRows} />;
+    return (
+      <TrainList
+        handlePageChange={this.changePage}
+        trainRows={
+          this.state.displayPage == 0
+            ? this.state.arrivalTrainRows
+            : this.state.departureTrainRows
+        }
+      />
+    );
   }
 }
 
