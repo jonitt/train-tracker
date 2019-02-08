@@ -32,13 +32,13 @@ class SearchBarContainer extends React.Component {
       return;
     }
 
-    let code = this.getStationCode(
+    let station = this.getStationCodeAndName(
       this.state.searchBarText,
       this.props.stations
     );
 
-    //if station was not found, "" was retured from getstationcode
-    if (code.length < 1) {
+    //if station was not found, [] was retured from getstationcode
+    if (station.length < 1) {
       this.setState({
         hasErrorStationNotFound: true
       });
@@ -46,17 +46,21 @@ class SearchBarContainer extends React.Component {
     }
 
     this.setState({
+      searchBarText: station[1], //change input text to proper name
       hasErrorStationNotFound: false
     });
 
-    this.props.onSubmit(code);
+    e.target.blur();
+
+    this.props.onSubmit(station[0]);
   }
 
   /*
     Search matching station code for given station name or code.
-    If no station code is found, return "".
+    Returns code and name in an array [(), ()] .
+    If no station code is found, return [].
   */
-  getStationCode(name, stations) {
+  getStationCodeAndName(name, stations) {
     let nameLower = name.trim().toLowerCase();
     for (let i = 0; i < stations.length; i++) {
       let stationName = stations[i].stationName;
@@ -67,9 +71,9 @@ class SearchBarContainer extends React.Component {
         nameLower ===
           stationName.slice(stationName.indexOf(" ") + 1).toLowerCase()
       )
-        return stations[i].stationShortCode;
+        return [stations[i].stationShortCode, stations[i].stationName];
     }
-    return "";
+    return [];
   }
 
   changeSearchBarValue(e) {
@@ -84,6 +88,7 @@ class SearchBarContainer extends React.Component {
         handleKeyPress={this.searchStation}
         onClickDelete={() => this.clearSearchBar()}
         hasErrorStationNotFound={this.state.hasErrorStationNotFound}
+        stationsAreSet={this.props.stationsAreSet}
       />
     );
   }

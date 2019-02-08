@@ -2,8 +2,11 @@ import React from "react";
 import TrainListPagination from "./train_list_pagination.jsx";
 
 /*
+  The change of chosen and unchosen button's visuality is handled
+  by passing displayPage prop from parent.
   @props:
     handleChange: handler for when different button is clicked
+    displayPage: page to show
 */
 class TrainListPaginationContainer extends React.Component {
   constructor(props) {
@@ -27,8 +30,14 @@ class TrainListPaginationContainer extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.displayPage != this.props.displayPage) {
+      this.swapChosen();
+    }
+  }
+
   /*
-    Changes chosen button visually, and calls props function with index of
+    Calls props function with index of
     button from left to right (0, 1...).
   */
   changeResults(e, key) {
@@ -37,13 +46,18 @@ class TrainListPaginationContainer extends React.Component {
     if (target.className == this.chosenClass) {
       return;
     }
+    this.props.handleChange(key);
+  }
 
+  /*
+    Change chosen and unchosen choice visually
+  */
+  swapChosen() {
     let temp = this.state.classArrivals;
     this.setState({
       classArrivals: this.state.classDepartures,
       classDepartures: temp
     });
-    this.props.handleChange(key);
   }
 
   render() {

@@ -9,18 +9,19 @@ class TrainsSearchContainer extends React.Component {
   constructor(props) {
     super(props);
     this.url =
-      "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=60&minutes_after_departure=60&minutes_before_arrival=60&minutes_after_arrival=60";
+      "https://rata.digitraffic.fi/api/v1/live-trains/station/?minutes_before_departure=30&minutes_after_departure=300&minutes_before_arrival=300&minutes_after_arrival=30";
     //this.url = "https://rata.digitraffic.fi/api/v1/live-trains?station=TPE";
     this.state = {
       foundTrains: [],
-      chosenStationCode: ""
+      chosenStationCode: "",
+      stationsAreSet: true
     };
   }
-
+/*
   componentDidMount() {
-    this.getTrains("HKI");
+    this.getTrains("TPE");
   }
-
+*/
   /*
     Gets trains of given city from the url
   */
@@ -35,7 +36,19 @@ class TrainsSearchContainer extends React.Component {
 
   searchTrains(stationCode) {
     console.log("searching trains for: " + stationCode);
+    this.setState({
+      stationsAreSet: false
+    });
     this.getTrains(stationCode);
+  }
+
+  /*
+    To call when train list has fiinished setting station rows.
+  */
+  finishSettingStations() {
+    this.setState({
+      stationsAreSet: true
+    });
   }
 
   render() {
@@ -45,6 +58,8 @@ class TrainsSearchContainer extends React.Component {
         onSubmitSearch={stationCode => this.searchTrains(stationCode)}
         stations={this.props.stations}
         foundTrains={this.state.foundTrains}
+        stationsSet={() => this.finishSettingStations()}
+        stationsAreSet={this.state.stationsAreSet}
       />
     );
   }

@@ -8,8 +8,14 @@ const TrainsSearch = props => (
     <SearchBarContainer
       stations={props.stations}
       onSubmit={props.onSubmitSearch}
+      stationsAreSet={props.stationsAreSet}
     />
-    <TrainListContainer chosenStationCode={props.chosenStationCode} stations={props.stations} trains={props.foundTrains} />
+    <TrainListContainer
+      chosenStationCode={props.chosenStationCode}
+      stations={props.stations}
+      trains={props.foundTrains}
+      stationsSet={props.stationsSet}
+    />
   </div>
 );
 

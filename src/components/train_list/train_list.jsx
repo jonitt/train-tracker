@@ -9,7 +9,10 @@ import TrainListRowContainer from "../train_list_row/train_list_row_container.js
 */
 const TrainList = props => (
   <div className="train_list">
-    <TrainListPaginatinoContainer handleChange={props.handlePageChange} />
+    <TrainListPaginatinoContainer
+      displayPage={props.displayPage}
+      handleChange={props.handlePageChange}
+    />
     <table className="train_list_trains">
       <colgroup>
         <col className="train_list_col_train" />
@@ -17,10 +20,13 @@ const TrainList = props => (
         <col className="train_list_col_arrival" />
         <col className="train_list_col_arrival_time" />
       </colgroup>
-      <tbody>
-        {props.trainRows}
-      </tbody>
+      <tbody>{props.trainRows}</tbody>
     </table>
+    {props.trainRows.length < 2 ? (
+      <div className="train_list_no_trains">
+        Haetulta asemalta ei löytynyt ajankohtaisia junia.
+      </div>
+    ) : null}
   </div>
 );
 
