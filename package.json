@@ -2,7 +2,7 @@
   "name": "train_tracker",
   "version": "6.4.1",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "start:dev": "webpack-dev-server",

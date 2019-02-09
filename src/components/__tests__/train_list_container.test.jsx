@@ -5,7 +5,12 @@ import React from "react";
 describe("TrainListContainer", () => {
   it("renders correctly", () => {
     const wrapper = shallow(
-      <TrainListContainer trains={[]} stations={[]} chosenStationCode="TPE" />
+      <TrainListContainer
+        trains={[]}
+        stations={[]}
+        chosenStationCode="TPE"
+        stationsSet={() => ""}
+      />
     );
     expect(wrapper).toMatchSnapshot();
   });

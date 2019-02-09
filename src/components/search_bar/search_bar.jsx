@@ -15,10 +15,10 @@ const SearchBar = props => (
         onKeyPress={props.handleKeyPress}
       />
       {props.hasErrorStationNotFound ? (
-        <div className="search_bar_error">Station now found!</div>
+        <div className="search_bar_error">Asemaa ei löytynyt!</div>
       ) : null}
       {props.stationsAreSet ? null : (
-        <div className="search_bar_searching_text">Etsitään asemia...</div>
+        <div className="search_bar_searching_text">Etsitään junia...</div>
       )}
       <DeleteIcon
         onClick={props.onClickDelete}

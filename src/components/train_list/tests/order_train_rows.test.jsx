@@ -2,7 +2,7 @@ import { shallow } from "enzyme";
 import React from "react";
 import TrainListContainer from "../train_list_container.jsx";
 
-const stations = require("./../../../utils/_example_train_timetable.js");
+const stations = require("./../../../utils/examples/_example_train_timetable.js");
 
 const trains = [];
 
@@ -11,6 +11,7 @@ const wrapper = shallow(
     trains={trains}
     stations={stations}
     chosenStationCode="TPE"
+    stationsSet={() => ""}
   />
 );
 

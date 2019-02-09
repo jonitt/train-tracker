@@ -44,7 +44,7 @@ module.exports = {
             }
           }
         ]
-      } //svg 
+      } //svg
     ] //rules arr
   }, //module
   devServer: {
