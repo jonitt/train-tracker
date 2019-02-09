@@ -66,7 +66,7 @@ $input_width: 230px;
   height: 12px;
   top: 0;
   left: calc(#{$input_width} - 15px);
-  transform: translateY(50%);
+  transform: translateY(calc(50% + 1px));
   position: absolute;
   z-index: 1;
   fill: #8c8f8c;
